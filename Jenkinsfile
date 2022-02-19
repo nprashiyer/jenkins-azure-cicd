@@ -13,11 +13,12 @@ pipeline {
             }
         }
         stage('Terraform Plan') {
-            withCredentials([azureServicePrincipal('CSD-AMER')]) {
+            
                 steps {
-                sh 'terraform plan'
+                    withCredentials([azureServicePrincipal('CSD-AMER')]) {
+                        sh 'terraform plan'
+                    }
                 }
-            }
         }
             
     }
