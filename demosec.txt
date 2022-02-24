@@ -1,1 +1,1 @@
-$token = "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"
+TOKEN=QFtbA86usustlA.atlasv1.4niGxllSTT7NUbleoPhE6UEKwToBzzzNGeaQmRknXblXepyxU8UOxYQAo5zjZZszVkA
