@@ -1,1 +1,2 @@
 $TOKEN= "QFtbA86usustlA.atlasv1.4niGxllSTT7NUbleoPhE6UEKwToBzzzNGeaQmRknXblXepyxU8UOxYQAo5zjZZszVkA"
+Write-Host $TOKEN
