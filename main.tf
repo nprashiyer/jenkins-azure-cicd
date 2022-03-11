@@ -32,4 +32,9 @@ resource "azurerm_app_service" "app" {
     scm_type                 = "LocalGit"
   }
   tags = azurerm_resource_group.rsg.tags
+  auth_settings {
+    enabled = true
+  }
+  client_cert_enabled = true
+  https_only = true
 }
