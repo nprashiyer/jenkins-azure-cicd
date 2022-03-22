@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
-        run: echo $env:GITHUB_REPOSITORY
+        run: echo $GITHUB_REPOSITORY
 
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo Repo name is $env:GITHUB_REPOSITORY
+          echo Repo name is $GITHUB_REPOSITORY
