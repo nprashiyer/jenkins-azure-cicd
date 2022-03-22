@@ -12,13 +12,13 @@ jobs:
       - name: Install Checkov
         run: pip3 install --no-cache-dir checkov
 
-      - name: Run a multi-line script
+      - name: Perform IaC Scan
         run: |
           checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact --quiet --soft-fail -o junitxml --output-file-path .
-          ls
           
-      - name: Publish Unit Test Results
+      - name: Publish Scan Results
         uses: EnricoMi/publish-unit-test-result-action/composite@v1
         if: always()
         with:
           files: "**/*.xml"
+          check_name: "IaC Scan Result"
