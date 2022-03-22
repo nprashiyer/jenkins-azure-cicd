@@ -2,9 +2,13 @@ name: BridgeCrew
 
 on:
   workflow_dispatch:
+  push:
+    branches-ignore: [ main ]
+  pull_request:
+    branches-ignore: [ main ]
 
 jobs:
-  build:
+  prisma-iac-scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,9 +16,12 @@ jobs:
       - name: Install Checkov
         run: pip3 install --no-cache-dir checkov
 
-      - name: Perform IaC Scan
+      - name: IaC Scan
         run: |
-          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY@${GITHUB_REF##*/} --output-bc-ids --compact -o junitxml --output-file-path .
+          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} `
+          --prisma-api-url https://api2.eu.prismacloud.io `
+          --repo-id $GITHUB_REPOSITORY `
+          --output-bc-ids --compact -o junitxml --output-file-path .
           
       - name: Publish Scan Results
         uses: EnricoMi/publish-unit-test-result-action/composite@v1
