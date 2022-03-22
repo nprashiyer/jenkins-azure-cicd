@@ -1,0 +1,18 @@
+name: BridgeCrew
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Checkov
+        run: pip3 install --no-cache-dir checkov
+
+      - name: Run a multi-line script
+        run: |
+          checkov -d . --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }} --repo-id $GITHUB_REPOSITORY --output-bc-ids --skip-suppressions --compact -o junitxml --output-file-path iac-scan-result.xml
+          ls
