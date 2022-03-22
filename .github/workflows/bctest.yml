@@ -14,5 +14,5 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          checkov -d / --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }} --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact
+          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }} --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact
           ls
