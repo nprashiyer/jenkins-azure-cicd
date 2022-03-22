@@ -16,3 +16,9 @@ jobs:
         run: |
           checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact --quiet --soft-fail -o junitxml --output-file-path .
           ls
+          
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: "**/*.xml"
