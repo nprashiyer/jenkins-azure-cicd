@@ -14,7 +14,7 @@ jobs:
 
       - name: Perform IaC Scan
         run: |
-          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact --quiet --soft-fail -o junitxml --output-file-path .
+          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact -o junitxml --output-file-path .
           
       - name: Publish Scan Results
         uses: EnricoMi/publish-unit-test-result-action/composite@v1
