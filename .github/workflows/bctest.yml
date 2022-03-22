@@ -14,5 +14,5 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          checkov -d . --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }} --repo-id $GITHUB_REPOSITORY --output-bc-ids --skip-suppressions --compact -o junitxml --output-file-path iac-scan-result.xml
+          checkov -d . --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }} --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact -o junitxml --output-file-path iac-scan-result.xml
           ls
