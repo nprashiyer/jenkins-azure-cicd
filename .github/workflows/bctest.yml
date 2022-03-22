@@ -1,4 +1,4 @@
-name: BridgeCrew
+name: Prisma Cloud Code Security IaC Scan
 
 on:
   workflow_dispatch:
