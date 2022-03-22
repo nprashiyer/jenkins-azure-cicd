@@ -13,9 +13,6 @@ jobs:
         run: pip3 install --no-cache-dir checkov
 
       - name: Run a multi-line script
-        env:
-          PRISMA_API_KEY: ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }}
         run: |
-          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact
+          checkov -d ${GITHUB_WORKSPACE} --bc-api-key ${{ secrets.PRISMA_ACCESS_KEY }}::${{ secrets.PRISMA_SECRET_KEY }} --prisma-api-url https://api2.eu.prismacloud.io --repo-id $GITHUB_REPOSITORY --output-bc-ids --compact --quiet --soft-fail -o junitxml --output-file-path scan.xml
           ls
-          echo $PRISMA_API_KEY
